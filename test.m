@@ -1,5 +1,4 @@
-begintime = '20190101';
-endtime = '20200101';
-code = '600029.SH';
-Exchange = 'SSE' ;
-[w_wsd_data,w_wsd_codes,w_wsd_fields,w_wsd_times,w_wsd_errorid] = w.wsd(code,'close',begintime,endtime,'Priceadj=B',['tradingcalendar=',Exchange] ,'Days=Trading')  %获取收盘价（后复权）
+[Fvol_GARCH,Fvol_EGARCH,Hvol] = Vol('601012.SH','20200430','20200730','20200731',today,'SSE')
+disp(['Forecasted 1-year GARCH volatility = ' num2str(Fvol_GARCH*100,4) '%'])
+disp(['Forecasted 1-year EGARCH volatility = ' num2str(Fvol_EGARCH*100,4) '%'])
+disp(['Historical 1-year volatility = ' num2str(Hvol*100,4) '%'])
