@@ -8,7 +8,7 @@ function Fvol_GARCH = Vol(code,B,E,Exchange)
     data = rmmissing(data);    %clear NAN
     prices = data(:,2);
     LogReturns = diff(log(prices));
-    tradingDays = 252;
+    tradingDays = 250;
     
     %Define GARCH & EGRACH
     function vol = fun(LogReturns)
