@@ -15,7 +15,7 @@ function K = AdjustX(St,X,r,t,T,sigma,I,P)
     W = (St*cdf(pd,d1) - K*exp(-r*(T-t))*cdf(pd,d2))*100/K + (100+I)*exp(-r*(T-t));
     while abs(W-P) > 0.001
         if W > P
-            break
+            continue
         else
             K = K - 0.01;
         end
