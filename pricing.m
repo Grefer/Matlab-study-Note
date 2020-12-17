@@ -12,19 +12,22 @@ function p = pricing(S0,X,T,r,coupon,sigma,CP,nStep,nPath)
     num1 = 1;
     p = zeros(nPath,1);
     for j = 1:nPath
-        for k = T-2:T-1
-            for i = (1+k*nStep/T : ((k+1)*nStep/T-30*floor((k+1)/T)
-                if s(j,i:i+29) < (X(j,1)*0.7)
-                    %X(j,1) = X(j,1)*mean(s(j,i:i+29));
-                    W = blsprice(s(j,i+29),X,r,k,sigma)*100/X + (100+coupon(k+1)*round(i+29-k*nStep/T)/250)*exp(-r*(i+29)/(nStep/T));
-                    while abs(W-CP) > 0.001
-                        if W > CP
-                            continue
-                        else
-                            X(j,1) = X(j,1) - 0.01;
-                        end
+        for i = nStep/T*4:nStep-30
+            if s(j,i:i+29) < (X(j,1)*0.7)
+                k = i/(nStep/T)
+                %X(j,1) = X(j,1)*mean(s(j,i:i+29));
+                W = blsprice(s(j,i+29),X,r,k,sigma)*100/X + (100+coupon(ceil(k)*mod(i*T/nStep)/250)*exp(-r*k))
+                while abs(W-CP) > 0.001
+                    if W > CP
+                        continue
+                    else
+                        X(j,1) = X(j,1) - 0.01;
                     end
-                    break
                 end
+                break
             end
+        end
+        for a = 
+    
+
             
