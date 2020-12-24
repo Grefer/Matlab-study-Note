@@ -1,12 +1,3 @@
-%% ����˵��
-% St---t�չɼ�
-% X---��ʼת�ɼ�
-% r---�޷�������
-% t---��������ʱ��
-% T---������
-% sigma---������
-% I---t��Ӧ����Ϣ
-% P---���ۼ۸�
 function K = AdjustX(St,X,r,t,T,sigma,I,CP)
     K = X;
     W = blsprice(St,K,r,T-t,sigma)*100/K + (100+I)*exp(-r*(T-t));

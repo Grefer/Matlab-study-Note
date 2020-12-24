@@ -3,7 +3,7 @@ function Fvol_GARCH = Vol(code,B,E,Exchange)
     %Modeling Interval
     begintime = B;
     endtime = E;
-    [w_wsd_data,w_wsd_codes,w_wsd_fields,w_wsd_times,w_wsd_errorid] = w.wsd(code,'close',begintime,endtime,'Priceadj=B',['tradingcalendar=',Exchange],'Days=Trading');  %获取收盘价（后复权）
+    [w_wsd_data,w_wsd_codes,w_wsd_fields,w_wsd_times,w_wsd_errorid] = w.wsd(code,'close',begintime,endtime,'Priceadj=B',['tradingcalendar=',Exchange],'Days=Trading');  
     data = [w_wsd_times,w_wsd_data];
     data = rmmissing(data);    %clear NAN
     prices = data(:,2);

@@ -16,5 +16,4 @@ function s = sPath(S0,r,sigma,T,nStep,nPath)
     title('Simulation');
     xlabel('Step')
     ylabel('Stock Price')
-
 end

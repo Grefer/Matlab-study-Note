@@ -8,8 +8,6 @@ function p = pricing(S0,X,T,r,coupon,sigma,CP,nStep,nPath)
         end
     end
     X = X * ones(nPath,1);
-    num0 = 0;
-    num1 = 1;
     p = zeros(nPath,1);
     for j = 1:nPath
         for i = nStep/T*4:nStep-30
