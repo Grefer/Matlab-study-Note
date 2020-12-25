@@ -1,28 +1,14 @@
-function p = pricing(S0,X,T,r,coupon,sigma,CP,nStep,nPath)
-    dt = T/nStep;          %设定步长
-    s = zeros(nPath ,nStep);
-    s(:,1) = S0;            %初始化S0
-    for j = 1:nPath
-        for i = 1:nStep-1
-            s(j,i+1) = s(j,i) * exp((r-0.5*sigma^2)*dt + sigma*sqrt(dt) *randn);
-        end
-    end
-    X = X * ones(nPath,1);
+function p = pricing(S0,X,T,r,sigma,n,nPath,CP,coupon)
+    %coupon是债券息票矩阵
+    s = sPath(S0,r,sigma,T,n*T,nPath);
+    X = X * ones(nPath,n*T);
     p = zeros(nPath,1);
     for j = 1:nPath
-        for i = nStep/T*4:nStep-30
-            if s(j,i:i+29) < (X(j,1)*0.7)
-                k = i/(nStep/T)
-                %X(j,1) = X(j,1)*mean(s(j,i:i+29));
-                W = blsprice(s(j,i+29),X,r,k,sigma)*100/X + (100+coupon(ceil(k)*mod(i*T/nStep)/250)*exp(-r*k))
-                while abs(W-CP) > 0.001
-                    if W > CP
-                        continue
-                    else
-                        X(j,1) = X(j,1) - 0.01;
-                    end
+        for k = 4:T-1
+            for i = (1+k*n):(k+1)*n-30*floor((k+1)/T)
+                if s(j,i:i+29) < (X(j,i+29)*0.7)
+                    X(j,(i+29):end) = AdjustX(s(j,i+29),X(j,i+29),r,(i+29)/n,T,sigma,coupon)
                 end
-                break
             end
         end
         for a = 
