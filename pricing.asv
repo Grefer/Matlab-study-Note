@@ -3,8 +3,8 @@ function price = pricing(S0,X,T,r,sigma,n,nPath,coupon1,coupon2)
     s = sPath(S0,r,sigma,T,n*T,nPath);
     X = X*ones(nPath,n*T);
     p = zeros(nPath,1);
-    AI = zeros(1,n*T);   %应计利息现值
-    FI = zeros(1,n*T);   %持有至到期利息现值
+    AI = zeros(1,n*T);
+    FI = zeros(1,n*T);
     FI(1,:) = coupon2(T);
     
     for i = n:n*T
@@ -44,13 +44,13 @@ function price = pricing(S0,X,T,r,sigma,n,nPath,coupon1,coupon2)
     
     for m = 1:nPath
         if p(m,1) > 0
-            s(m,:) = 0;     %剔除触发赎回条款路径的股价
+            s(m,:) = 0;     %剔除触发赎回条款路径的
         end
     end
     
-    M = 100*s(:,end)./X(:,end);    %期末转股价值
-    CP = 100 + coupon2(:,end);     %期末赎回价值
-    cashflows=max(CP,M);         
+    M = 100*s(:,end)./X(:,end);
+    CP = 100 + coupon2(:,end);
+    cashflows=max(CP,M);
         
     for j = 1:nPath
         if M(j,1) == 0
@@ -75,10 +75,7 @@ function price = pricing(S0,X,T,r,sigma,n,nPath,coupon1,coupon2)
         cashflows(k) = IntrinsicValue(Exercise);
         Xtime(k) = step;
     end
-    
     price = mean(cashflows.*discountfactor(Xtime)+p(:,1));
-    
-end
     
     
 

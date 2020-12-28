@@ -7,7 +7,7 @@ function K = AdjustX(St,X,r,t,T,sigma,coupon)
         I = I + coupon(6-i)*exp(-r*(T-t-i));
         i = i+1;
     end
-    W = blsprice(St,K,r,T-t,sigma)*100/K*exp(-r*(T-t)) + (100*exp(-r*(T-t))+I);
+    W = blsprice(St,K,r,T-t,sigma)*100/K + (100*exp(-r*(T-t))+I);
     while abs(W-CP) > 0.01
         if W > CP
             return
