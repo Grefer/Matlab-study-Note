@@ -4,7 +4,7 @@ function K = AdjustX(St,X,r,t,T,sigma,coupon)
     i = 0;
     I = 0;
     while i < (T-t)
-        I = I + coupon(6-i)*exp(-r*(T-t-i));
+        I = I + coupon(T-i)*exp(-r*(T-t-i));
         i = i+1;
     end
     W = blsprice(St,K,r,T-t,sigma)*100/K + (100*exp(-r*(T-t))+I);

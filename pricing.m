@@ -25,7 +25,7 @@ function price = pricing(S0,X,T,r,sigma,n,nPath,coupon1,coupon2)
     
     for j = 1:nPath
         
-        for k = 4:T-1    %回售期
+        for k = T-2:T-1    %回售期
             for i = (1+k*n):(k+1)*n-30
                 if s(j,i:i+29) < (X(j,i+29)*0.7)         %触发回售条件
                     X(j,(i+30):end) = AdjustX(s(j,i+29),X(j,i+29),r,(i+30)/n,T,sigma,coupon1);   %修正股价
