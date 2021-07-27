@@ -1,5 +1,5 @@
 function Fvol_GARCH = Vol(code,B,E,Exchange)
-    w = windmatlab;  
+    w = windmatlab; 
     %Modeling Interval
     begintime = B;
     endtime = E;
