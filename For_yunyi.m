@@ -1,9 +1,9 @@
 %自动获取品种各合约收盘价序列并支持合约换月调整
 %By Grefer
 w = windmatlab;
-begintime = '20190702';        %时间序列开始时间
-endtime = '20210809';          %时间序列结束时间
-code = 'CU.SHF';               %标的品种
+begintime = '20180917';        %时间序列开始时间
+endtime = '20210917';          %时间序列结束时间
+code = 'PB.SHF';               %标的品种
 flag = 1;                      %换月价格调整开关：1开/-1关
 
 [w_wsd_data,w_wsd_codes,w_wsd_fields,w_wsd_times,w_wsd_errorid,w_wsd_reqid] = w.wsd(code,'close,trade_hiscode',begintime,endtime,'Days=Trading');  
