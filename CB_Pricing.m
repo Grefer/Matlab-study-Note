@@ -1,7 +1,7 @@
 function price = CB_Pricing(S0,X,T,r,sigma,n,C,P,nPath,coupon1,coupon2)
-    %coupon是债券息票矩阵
-    %n为年交易日天数，转债市场为250
-    %C为赎回条款标识，P为回售条款标识
+    % coupon是债券息票矩阵
+    % n为年交易日天数，转债市场默认为250
+    % C为赎回条款标识，P为回售条款标识
     
     s = sPath(S0,r,sigma,T,n*T,nPath);
     X = X*ones(nPath,n*T);
